@@ -1,0 +1,45 @@
+* GeoViews: From exploratory analysis to custom GIS dashboards in a few lines of Python code
+
+Open-source GIS tools generally focus either on interactive exploration or on building special-purpose static or interactive visualizations and dashboards, but there is little support for moving easily between these two common activities. GeoViews is a new high-level Python GIS library that allows the user to quickly explore and visualize large geographical, meteorological, oceanographic, weather, climate, and other real-world data. GeoViews puts tremendous power at the user's fingertips both for exploratory visualization and analysis and for building custom, highly interactive dashboards. GeoViews natively supports various GIS data types, including raster, GeoJSON, gridded, and tabular data, working in synergy with other Python libraries like bokeh, matplotlib, and datashader to help you build interactive web visualizations and dashboards for even the largest datasets in only a few lines of code.
+
+** Exploratory vs. Explanatory
+
+*** Problem statement: Many OSS tools for exploratory analysis and separate ecosystem of explanatory tools
+*** Solution: Ecosystem of tools which work nicely together
+	
+** GeoViews ecosystem slide
+
+*** Python OSS ecosystem: NumPy, Pandas, Cartopy, Matplotlib
+*** Bokeh, Datashader, paramNB, paramBokeh, HoloViews, GeoViews
+
+
+** Introduction to HoloViews
+
+*** Declarative objects which visualize themselves
+*** Wrappers around different datatypes: pandas, numpy, xarray, shapefiles, dask
+*** Show faceting, animations, sliders widgets
+
+
+** Introduction to Datashader
+
+*** Show datashader pipeline diagram
+*** Show off some interactive zooming on billion point dataset
+
+** GeoViews overview
+
+*** Declarative objects with associated CRS
+*** Show off projections in matplotlib and tiles in bokeh
+*** All the power of HoloViews: show slider + projected image
+*** Show full interactive plot with datashader, tile source and hover
+*** Summary: Visualization of billions of datapoints in few lines of code
+
+
+** Building dashboards
+
+*** Introduce paramNB and paramBokeh via param
+*** Show off paramBokeh dashboard
+
+
+** Summary
+
+*** Combining these tools allows for exploratory analysis in few lines of code + trivial deployment to an app
