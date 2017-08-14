@@ -1,4 +1,4 @@
-name: scipy2017
+name: foss4g
 channels:
   - ioam
   - bokeh
