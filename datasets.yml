@@ -6,3 +6,8 @@ data:
     title: 'NYC Taxi Data'
     files:
       - nyc_taxi.parq
+
+  - url: https://www.unidata.ucar.edu/software/netcdf/examples/rhum.2003.nc
+    title: 'Relative humidity'
+	files:
+	  - rhum.2003.nc
