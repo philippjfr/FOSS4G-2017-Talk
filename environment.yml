@@ -17,5 +17,6 @@ dependencies:
   - rise
   - jupyter_dashboards
   - fastparquet
+  - cffi
   - python-snappy
   - parambokeh
