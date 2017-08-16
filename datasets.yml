@@ -9,5 +9,5 @@ data:
 
   - url: https://www.unidata.ucar.edu/software/netcdf/examples/rhum.2003.nc
     title: 'Relative humidity'
-	files:
-	  - rhum.2003.nc
+    files:
+      - rhum.2003.nc
