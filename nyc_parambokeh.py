@@ -10,9 +10,9 @@ hv.extension('bokeh')
 df = dd.read_parquet('./data/nyc_taxi.parq/').persist()
 url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{Z}/{Y}/{X}.jpg'
 tiles = gv.WMTS(WMTSTileSource(url=url))
-tile_options = dict(width=800,height=475,xaxis=None,yaxis=None,bgcolor='black',show_grid=False)
+tile_options = dict(width=1000,height=525,xaxis=None,yaxis=None,bgcolor='black',show_grid=False)
 
-passenger_counts = (0, df.passenger_count.max().compute()+1)
+passenger_counts = (0, int(df.passenger_count.max().compute()+1))
 
 class NYCTaxiExplorer(hv.streams.Stream):
     alpha      = param.Magnitude(default=0.75, doc="Alpha value for the map opacity")
@@ -21,12 +21,12 @@ class NYCTaxiExplorer(hv.streams.Stream):
     passengers = param.Range(default=passenger_counts, bounds=passenger_counts)
     output     = parambokeh.view.Plot()
 
-    def make_view(self, x_range, y_range, alpha, colormap, plot, passengers, **kwargs):
-        map_tiles = tiles(style=dict(alpha=alpha), plot=tile_options)
-        points = hv.Points(df, kdims=[plot+'_x', plot+'_y'], vdims=['passenger_count'])
-        if passengers != passenger_counts: points = points.select(passenger_count=passengers)
-        taxi_trips = datashade(points, x_sampling=1, y_sampling=1, cmap=colormap,
-                               dynamic=False, x_range=x_range, y_range=y_range)
+    def make_view(self, x_range, y_range, **kwargs):
+        map_tiles = tiles(style=dict(alpha=self.alpha), plot=tile_options)
+        points = hv.Points(df, kdims=[self.plot+'_x', self.plot+'_y'], vdims=['passenger_count'])
+        if self.passengers != passenger_counts: points = points.select(passenger_count=self.passengers)
+        taxi_trips = datashade(points, x_sampling=1, y_sampling=1, cmap=self.colormap,
+                               dynamic=False, x_range=x_range, y_range=y_range, width=1000, height=525)
         return map_tiles * taxi_trips
 
 selector = NYCTaxiExplorer(name="NYC Taxi Trips")

@@ -15,7 +15,7 @@ df = dd.read_parquet('./data/osm-1billion.snappy.parq/').persist()
 url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{Z}/{Y}/{X}.jpg'
 tiles = gv.WMTS(WMTSTileSource(url=url))
 
-hv.opts("WMTS [width=800 height=475 xaxis=None yaxis=None bgcolor='black']"
+hv.opts("WMTS [width=1000 height=525 xaxis=None yaxis=None bgcolor='black']"
         "Histogram [logy=True] (fill_color='white') {+framewise} VLine (color='black')")
 
 class OSMExplorer(hv.streams.Stream):
@@ -37,7 +37,7 @@ def tiles_fn(alpha, **kwargs): return tiles.opts(style=dict(alpha=alpha))
 explorer = OSMExplorer(name="OpenStreetMap GPS Explorer")
 
 tile = hv.DynamicMap(tiles_fn, streams=[explorer])
-agg = aggregate(hv.Points(df))
+agg = aggregate(hv.Points(df), x_sampling=10, y_sampling=10)
 filtered = hv.util.Dynamic(agg, operation=filter_count, streams=[explorer])
 shaded = shade(filtered, streams=[explorer])
 hline = hv.DynamicMap(hline_fn, streams=[explorer])
